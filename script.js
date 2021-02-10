@@ -20,13 +20,17 @@ function renderNotes() {
 
 function addDragListeners() {
   const container = document.querySelector('.js-content');
+  let dragNote = null;
+
   container.addEventListener('dragstart', (e) => {
     const note = e.target;
+    dragNote = note;
     note.classList.add('dragging');
     
   })
   container.addEventListener('dragend', (e) => {
     const note = e.target;
+    dragNote = null;
     note.classList.remove('dragging');
     
   })
@@ -50,7 +54,21 @@ function addDragListeners() {
   })
 
   container.addEventListener('drop', (e) => {
-    
+    const dropNote = e.target;
+    if(dragNote) {
+      const dropNoteInx = STORE.notes
+                               .findIndex(note => note.id === 
+                                parseInt(dropNote.dataset.id))
+      const dragNoteInx = STORE.notes
+                                .findIndex(note => note.id === 
+                                 parseInt(dragNote.dataset.id))
+      const newNotes = [...STORE.notes]
+      const temp = newNotes[dropNoteInx]
+      newNotes[dropNoteInx] = newNotes[dragNoteInx];
+      newNotes[dragNoteInx] = temp
+      STORE.notes = newNotes
+      renderNotes()
+    }
     
   })
 }
