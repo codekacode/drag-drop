@@ -14,12 +14,14 @@ function renderNote(note) {
 
 function renderNotes() {
   const container = document.querySelector('.js-content');
+
   const list = `<ul>${STORE.notes.map(renderNote).join('')}</ul>`
   container.innerHTML = list;
 }
 
 function addDragListeners() {
   const container = document.querySelector('.js-content');
+  const trash = document.querySelector('.js-trash');
   let dragNote = null;
 
   container.addEventListener('dragstart', (e) => {
@@ -70,6 +72,15 @@ function addDragListeners() {
       renderNotes()
     }
     
+  })
+
+  trash.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    
+  })
+
+  trash.addEventListener('drop', (e) => {
+    console.log('drop', dragNote.dataset.id)
   })
 }
 
