@@ -1,0 +1,46 @@
+ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  list-style: none;
+}
+
+ul li {
+  border: 5px solid #c9ee23;
+  border-radius: 5px;
+  padding: 10px;
+  opacity: 1;
+  transition: opacity 400ms, padding 400ms;
+  color: #fff;
+}
+
+.black {
+  background: #000;
+}
+
+.purple {
+  background: #65e;
+}
+
+.red {
+  background: #734;
+}
+
+.dragging {
+  opacity: 0.4;
+}
+
+.hover {
+  padding: 20px;
+  border: 5px dashed;
+}
+
+.js-trash {
+  padding: 15px;
+  margin-top: 10px;
+  margin-left: 40px;
+  height: 40px;
+  width: 480px;
+  border: 5px solid #000;
+  text-align: center;
+}
